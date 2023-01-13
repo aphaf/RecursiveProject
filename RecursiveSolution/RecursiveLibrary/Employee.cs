@@ -1,26 +1,48 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 
 namespace RecursiveLibrary
 {
-    public class Fibonacci
+    public class Employee
     {
-        /* leetcode recursion definition
-            Principle of recursion
-               Recursion is an approach to solving problems using a function that calls itself as a subroutine
-               Each time a resursive function calls itself, it reduces the given problem into subproblems
-
-            Recursive functions should have a base case and set of rules to prevent infinite loops
-               1. simple base case(s) - a terminating scenario that does not use recursion
-               2. a set of rule s(recurrence relation) that reduces all other cases towards the base case
+        /*
+        1. Employee (Id, name). 
+        Each employee has a supervisor. 
+        Each supervisor can supervise multiple employees (supervisors are also employees). 
+        Design the class diagram. 
+        
+        Design a recursive method: 
+            Given a employee, list the entire chain of his / her supervisors.
         */
 
+        [Key]
+        public int Id { get; set; }
+        [Required]
+        public string Name { get; set; }
 
-        //3. design a recursive method to generate Fibonacci numbers(for n = 6 - provide 1, 2, 3, 5, 8, 13).
+        public Employee(int id, string name)
+        {
+            Id = id;
+            Name = name;
+        }
 
-        public List<int> FindFibonacciNumbers(int num)
+        public int? SupervisorID { get; set; }
+        [ForeignKey("SupervisorID")]
+        public Employee? Supervisor { get; set; }
+
+        public List<Employee>? ListOfSupervisors { get; set; }
+
+
+        
+
+
+            /*
+             public List<int> FindFibonacciNumbers(int num)
         {
             //termination condition
             //when num hits 1 it stops the recurs (runs 6 based on test times)
@@ -60,35 +82,11 @@ namespace RecursiveLibrary
                         list[0] + list[1] == 1 + 2 = 3
                     
                      */
-                }
-                return list;
-            }
-        }
 
 
-
-        /* solved with a loop
-         
-          public List<int> FibNum(int number)
-            {
-                int value = 1;
-                List<int> list = new List<int>();
-
-                for (int i = 0; list.Count < number; i++)
-                {
-                    list.Add(value);
-                    if (list.Count > 1)
-                    {
-                        value += list[i -1];
-                    }
-                    else
-                    {
-                        value += list[i];
-                    }
-                }
-
-                return list;
-            }
+        /*
+        2. Course (Id, name). Each course has none, one or more prerequisites. Each course is the prerequisite for none, one or more courses. Design a recursive method: Given a course, list its entire chain of prerequisite courses.
+        
          */
     }
 }
