@@ -21,72 +21,48 @@ namespace RecursiveLibrary
         */
 
         [Key]
-        public int Id { get; set; }
+        public int EmployeeID { get; set; }
+
         [Required]
         public string Name { get; set; }
 
-        public Employee(int id, string name)
-        {
-            Id = id;
-            Name = name;
-        }
+        
 
         public int? SupervisorID { get; set; }
         [ForeignKey("SupervisorID")]
         public Employee? Supervisor { get; set; }
 
-        public List<Employee>? ListOfSupervisors { get; set; }
+        public List<Employee>? ListOfEmployees { get; set; }
 
 
-        
-
-
-            /*
-             public List<int> FindFibonacciNumbers(int num)
+        public Employee(int employeeID, string name)
         {
+            EmployeeID = employeeID;
+            Name = name;
+            ListOfEmployees = new List<Employee>();
+        }
+        public Employee()
+        {
+            ListOfEmployees = new List<Employee>();
+        }
+
+
+        public List<Employee> FindAllSupervisors(Employee employee)
+        {
+            List<Employee> allSupervisors = new List<Employee>();
+
             //termination condition
-            //when num hits 1 it stops the recurs (runs 6 based on test times)
-            if (num == 1)
+            if (employee.Supervisor != null)
             {
-                return new List<int>() { 1 };
-                //creates list with first fibonacci number
+                //recursion call
+                //call the method until no supervisor is found^^
+                allSupervisors = FindAllSupervisors(employee.Supervisor);
+
+                //add the supervisor of employee
+                allSupervisors.Add(employee.Supervisor);
             }
-            //recursive call
-            else
-            {
-                List<int> list = FindFibonacciNumbers(num - 1);
-                //calls method 6 times (based on test), basically nesting within itself
 
-                if (list.Count == 1)
-                //if the list has 1 value (the first fibonacci number)
-                {
-                    //adds the first index (1) with itself, and adds it (2) to the list
-                    list.Add(list[0] + list[0]);
-                }
-                else
-                {
-                    int n = list.Count - 2;
-                    //variable n used during debugging, could just put this within the add method below
-                    //list.count - 2 is to find the index before the last index, index is 0 based counting, have to subtract by 2
-
-                    list.Add(list[n] + list.Last());
-                    //adding the 2nd to last element and the last element together, adding the new value to the list
-
-                    /*
-                    example using 2nd run
-                        num = 2
-                        list.count = 2
-
-                        n = 0 
-                        
-                        list[0] + list[1] == 1 + 2 = 3
-                    
-                     */
-
-
-        /*
-        2. Course (Id, name). Each course has none, one or more prerequisites. Each course is the prerequisite for none, one or more courses. Design a recursive method: Given a course, list its entire chain of prerequisite courses.
-        
-         */
+            return allSupervisors;
+        }
     }
 }

@@ -1,42 +1,70 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
   <Class Name="RecursiveLibrary.Fibonacci">
-    <Position X="1" Y="2" Width="2" />
+    <Position X="1.75" Y="5" Width="2" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Fibonacci.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="RecursiveLibrary.Employee">
-    <Position X="3.75" Y="2.75" Width="2.5" />
+    <Position X="5" Y="2.5" Width="1.75" />
     <AssociationLine Name="Supervisor" Type="RecursiveLibrary.Employee" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
       <Path>
-        <Point X="5.25" Y="4.055" />
-        <Point X="5.929" Y="4.055" />
-        <Point X="5.929" Y="4.957" />
-        <Point X="4.875" Y="4.957" />
-        <Point X="4.875" Y="4.882" />
+        <Point X="5.438" Y="2.5" />
+        <Point X="5.438" Y="1.894" />
+        <Point X="7.125" Y="1.894" />
+        <Point X="7.125" Y="3.256" />
+        <Point X="6.75" Y="3.256" />
       </Path>
     </AssociationLine>
-    <AssociationLine Name="ListOfSupervisors" Type="RecursiveLibrary.Employee" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
+    <AssociationLine Name="ListOfEmployees" Type="RecursiveLibrary.Employee" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
       <Path>
-        <Point X="4.062" Y="4.882" />
-        <Point X="4.062" Y="5.282" />
-        <Point X="6.312" Y="5.282" />
-        <Point X="6.312" Y="3.917" />
-        <Point X="5.25" Y="3.917" />
+        <Point X="6.75" Y="3.462" />
+        <Point X="7.347" Y="3.462" />
+        <Point X="7.347" Y="1.894" />
+        <Point X="5.312" Y="1.894" />
+        <Point X="5.312" Y="2.5" />
       </Path>
     </AssociationLine>
     <TypeIdentifier>
-      <HashCode>AAACIAAAAEAAAAAAAAAAAAQAABAAAAAAAQAAAAAAAAA=</HashCode>
+      <HashCode>AAIAIAAAAEAAAAAAAAAACAQAAAAAAAAAAQAAAAAAAAA=</HashCode>
       <FileName>Employee.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
       <Property Name="Supervisor" />
     </ShowAsAssociation>
     <ShowAsCollectionAssociation>
-      <Property Name="ListOfSupervisors" />
+      <Property Name="ListOfEmployees" />
     </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="RecursiveLibrary.Course">
+    <Position X="9.5" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAggAAAAAAAAAAAAAAAAAAQAAAAAAAQAAAAAAAAAAAA=</HashCode>
+      <FileName>Course.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="PreReqCourses" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="RecursiveLibrary.PreReq">
+    <Position X="11.5" Y="1.25" Width="1.5" />
+    <AssociationLine Name="Course" Type="RecursiveLibrary.Course" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="11.969" Y="3.19" />
+        <Point X="11.969" Y="4.151" />
+        <Point X="11" Y="4.151" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAIACABAAAAAAAAQAAAAAEAAAAAA=</HashCode>
+      <FileName>PreReq.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="PreReqCourse" />
+      <Property Name="Course" />
+    </ShowAsAssociation>
   </Class>
   <Font Name="Segoe UI" Size="9" />
 </ClassDiagram>
