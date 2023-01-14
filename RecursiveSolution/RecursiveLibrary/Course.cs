@@ -24,7 +24,7 @@ namespace RecursiveLibrary
         [Required]
         public string Name { get; set; }
 
-        public List<PreReq>? PreReqCourses { get; set; }
+        public List<PreReq> PreReqCourses { get; set; }
 
         public Course(int courseID, string name)
         {
@@ -38,16 +38,29 @@ namespace RecursiveLibrary
             PreReqCourses = new List<PreReq>();
         }
 
-        public List<Course> FindAllPreReqs(Course course)
+        public List<Course> FindAllPreReqs(Course course, List<Course> allPreReqs)
         {
-            List<Course> allPreReqCourses = new List<Course>();
+            if (course.PreReqCourses.Any())//if course prereq list has anything (course has prereq)
+            {
+                foreach (PreReq preReq in course.PreReqCourses)//for each preReq in course prereq list
+                {
+                    allPreReqs = FindAllPreReqs(preReq.PreReqCourse, allPreReqs);//recursive call
+                    if (!allPreReqs.Contains(preReq.PreReqCourse))//if allprereq list does not have this course, add it
+                    {
+                        allPreReqs.Add(preReq.PreReqCourse);
+                    }
+                }
+            }
+            else//(course does not have prereq)
+            {
+                if (!allPreReqs.Contains(course) && allPreReqs.Any())
+                    //if allprereq list does not have this course, and allprereq has something in it, add this course
+                {
+                    allPreReqs.Add(course);
+                }
+            }
 
-            
-            
-
-
-
-            return allPreReqCourses;
+            return allPreReqs;
         }
     }
 }

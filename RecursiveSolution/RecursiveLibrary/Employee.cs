@@ -34,7 +34,6 @@ namespace RecursiveLibrary
 
         public List<Employee>? ListOfEmployees { get; set; }
 
-
         public Employee(int employeeID, string name)
         {
             EmployeeID = employeeID;
@@ -45,7 +44,6 @@ namespace RecursiveLibrary
         {
             ListOfEmployees = new List<Employee>();
         }
-
 
         public List<Employee> FindAllSupervisors(Employee employee)
         {
