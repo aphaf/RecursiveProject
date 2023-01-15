@@ -40,27 +40,33 @@ namespace RecursiveLibrary
 
         public List<Course> FindAllPreReqs(Course course, List<Course> allPreReqs)
         {
-            if (course.PreReqCourses.Any())//if course prereq list has anything (course has prereq)
+            foreach (PreReq preReq in course.PreReqCourses)//for each preReq in course prereq list
             {
-                foreach (PreReq preReq in course.PreReqCourses)//for each preReq in course prereq list
-                {
-                    allPreReqs = FindAllPreReqs(preReq.PreReqCourse, allPreReqs);//recursive call
-                    if (!allPreReqs.Contains(preReq.PreReqCourse))//if allprereq list does not have this course, add it
-                    {
-                        allPreReqs.Add(preReq.PreReqCourse);
-                    }
-                }
-            }
-            else//(course does not have prereq)
-            {
-                if (!allPreReqs.Contains(course) && allPreReqs.Any())
-                    //if allprereq list does not have this course, and allprereq has something in it, add this course
-                {
-                    allPreReqs.Add(course);
-                }
+                allPreReqs = FindAllPreReqs(preReq.PreReqCourse, allPreReqs);//recursive call
+                allPreReqs.Add(preReq.PreReqCourse);
             }
 
-            return allPreReqs;
+            return allPreReqs.Distinct().ToList();
+
+            //if (course.PreReqCourses.Any())//if course prereq list has anything (course has prereq)
+            //{
+            //    foreach (PreReq preReq in course.PreReqCourses)//for each preReq in course prereq list
+            //    {
+            //        allPreReqs = FindAllPreReqs(preReq.PreReqCourse, allPreReqs);//recursive call
+            //        if (!allPreReqs.Contains(preReq.PreReqCourse))//if allprereq list does not have this course, add it
+            //        {
+            //            allPreReqs.Add(preReq.PreReqCourse);
+            //        }
+            //    }
+            //}
+            //else//(course does not have prereq)
+            //{
+            //    if (!allPreReqs.Contains(course) && allPreReqs.Any())
+            //        //if allprereq list does not have this course, and allprereq has something in it, add this course
+            //    {
+            //        allPreReqs.Add(course);
+            //    }
+            //}
         }
     }
 }
