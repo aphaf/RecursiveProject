@@ -14,7 +14,7 @@ namespace RecursiveTest
         {
             int expected = 13;
             Fibonacci fibonacci = new Fibonacci();
-            int actual = fibonacci.FindFibonacciNumbers(6).Last();
+            int actual = fibonacci.FindFibonacciNumbers(6, new List<int>()).Last();
 
             Assert.Equal(expected, actual);
         }

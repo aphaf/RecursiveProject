@@ -17,7 +17,7 @@ namespace RecursiveTest
             //List<Employee> supervisorList = employee.FindAllSupervisors(employee);
 
             int expected = 3;
-            int actual = mockEmployees.Last().FindAllSupervisors(mockEmployees.Last()).Count;
+            int actual = mockEmployees.Last().FindAllSupervisors(mockEmployees.Last(), new List<Employee>()).Count;
 
             Assert.Equal(expected, actual);
         }
@@ -28,7 +28,7 @@ namespace RecursiveTest
             List<Employee> mockEmployees = CreateMockEmployees();
 
             int expected = 0;
-            int actual = mockEmployees.First().FindAllSupervisors(mockEmployees.First()).Count;
+            int actual = mockEmployees.First().FindAllSupervisors(mockEmployees.First(), new List<Employee>()).Count;
 
             Assert.Equal(expected, actual);
         }

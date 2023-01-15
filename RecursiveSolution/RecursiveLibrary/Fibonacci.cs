@@ -20,9 +20,9 @@ namespace RecursiveLibrary
 
         //3. design a recursive method to generate Fibonacci numbers(for n = 6 - provide 1, 2, 3, 5, 8, 13).
 
-        public List<int> FindFibonacciNumbers(int num)
+        public List<int> FindFibonacciNumbers(int num, List<int> numbers)
         {
-            List<int> numbers = new List<int>();
+            //List<int> numbers = new List<int>();
 
             //termination condition
             //when num hits 1 it stops the recurs (runs 6 based on test times)
@@ -34,7 +34,7 @@ namespace RecursiveLibrary
             //recursive call
             else
             {
-                numbers = FindFibonacciNumbers(num - 1);
+                numbers = FindFibonacciNumbers(num - 1, numbers);
                 //calls method 6 times (based on test), basically nesting within itself
 
                 if (numbers.Count == 1)

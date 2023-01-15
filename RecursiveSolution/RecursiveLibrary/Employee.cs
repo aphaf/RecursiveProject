@@ -45,16 +45,16 @@ namespace RecursiveLibrary
             ListOfEmployees = new List<Employee>();
         }
 
-        public List<Employee> FindAllSupervisors(Employee employee)
+        public List<Employee> FindAllSupervisors(Employee employee, List<Employee> allSupervisors)
         {
-            List<Employee> allSupervisors = new List<Employee>();
+            //List<Employee> allSupervisors = new List<Employee>();
 
             //termination condition
             if (employee.Supervisor != null)
             {
                 //recursion call
                 //call the method until no supervisor is found^^
-                allSupervisors = FindAllSupervisors(employee.Supervisor);
+                allSupervisors = FindAllSupervisors(employee.Supervisor, allSupervisors);
 
                 //add the supervisor of employee
                 allSupervisors.Add(employee.Supervisor);
