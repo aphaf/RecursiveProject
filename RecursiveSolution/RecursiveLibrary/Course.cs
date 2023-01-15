@@ -43,10 +43,14 @@ namespace RecursiveLibrary
             foreach (PreReq preReq in course.PreReqCourses)//for each preReq in course prereq list
             {
                 allPreReqs = FindAllPreReqs(preReq.PreReqCourse, allPreReqs);//recursive call
-                allPreReqs.Add(preReq.PreReqCourse);
+                allPreReqs.Add(preReq.PreReqCourse);//add the pre req to the course
             }
 
-            return allPreReqs.Distinct().ToList();
+            return allPreReqs.Distinct().ToList();//find all distinct values (each individual course) and return that list
+
+            //https://learn.microsoft.com/en-us/dotnet/api/system.linq.enumerable.distinct?view=net-7.0
+            //https://stackoverflow.com/questions/10255121/get-a-list-of-distinct-values-in-list
+
 
             //if (course.PreReqCourses.Any())//if course prereq list has anything (course has prereq)
             //{
