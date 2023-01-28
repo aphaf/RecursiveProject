@@ -18,26 +18,42 @@ namespace RecursiveLibrary
         
          */
 
-        [Key]
         public int CourseID { get; set; }
 
-        [Required]
         public string Name { get; set; }
 
-        public List<PreReq> PreReqCourses { get; set; }
+        public List<Course> PreReqCourses { get; set; }
+        public List<Course> PreReqFor { get; set; }
+        //public List<PreReq> PreReqCourses { get; set; }
 
         public Course(int courseID, string name)
         {
             CourseID = courseID;
             Name = name;
-            PreReqCourses = new List<PreReq>();
+            //PreReqCourses = new List<PreReq>();
+            PreReqCourses = new List<Course>();
+            PreReqFor = new List<Course>();
         }
 
         public Course()
         {
-            PreReqCourses = new List<PreReq>();
+            //PreReqCourses = new List<PreReq>();
+            PreReqCourses = new List<Course>();
+            PreReqFor = new List<Course>();
         }
 
+        public List<Course> FindAllPreReqs(List<Course> allPreReqs)
+        {
+            foreach (Course preReq in PreReqCourses)//for each preReq in course prereq list
+            {
+                allPreReqs = preReq.FindAllPreReqs(allPreReqs);//recursive call
+                allPreReqs.AddRange(PreReqCourses);//add the pre req to the course
+            }
+
+            return allPreReqs.Distinct().ToList();//find all distinct values (each individual course) and return that list
+        }
+
+        /*
         public List<Course> FindAllPreReqs(Course course, List<Course> allPreReqs)
         {
             foreach (PreReq preReq in course.PreReqCourses)//for each preReq in course prereq list
@@ -71,6 +87,6 @@ namespace RecursiveLibrary
             //        allPreReqs.Add(course);
             //    }
             //}
-        }
+        }*/
     }
 }

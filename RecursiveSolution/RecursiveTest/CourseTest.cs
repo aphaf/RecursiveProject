@@ -18,7 +18,7 @@ namespace RecursiveTest
             //List<Course> preReqList = course.FindAllPreReqs(course, new List<Course>());
 
             int expected = 4;
-            int actual = mockCourses.Last().FindAllPreReqs(mockCourses.Last(), new List<Course>()).Count;
+            int actual = mockCourses.Last().FindAllPreReqs(new List<Course>()).Count;
 
             Assert.Equal(expected, actual);
         }
@@ -31,12 +31,58 @@ namespace RecursiveTest
             //List<Course> preReqList = course.FindAllPreReqs(course, new List<Course>());
 
             int expected = 0;
-            int actual = mockCourses.First().FindAllPreReqs(mockCourses.First(), new List<Course>()).Count;
+            int actual = mockCourses.First().FindAllPreReqs(new List<Course>()).Count;
 
             Assert.Equal(expected, actual);
         }
 
         public List<Course> CreateMockCourses()
+        {
+            List<Course> mockCourses = new List<Course>();
+
+            Course course = new Course
+            {
+                CourseID = 1,
+                Name = "351",
+            };
+            mockCourses.Add(course);
+
+            course = new Course
+            {
+                CourseID = 3,
+                Name = "353",
+                PreReqCourses = new List<Course>
+                {
+                    course,
+                    new Course(2, "352")
+                }
+            };
+            List<Course> preReqsFor452 = new List<Course> { course };
+            mockCourses.Add(course);
+
+            course = new Course
+            {
+                CourseID = 4,
+                Name = "450",
+                PreReqCourses = new List<Course> { course } 
+            };
+            preReqsFor452.Add(course);
+            mockCourses.Add(course);
+
+            course = new Course
+            {
+                CourseID = 5,
+                Name = "452",
+                PreReqCourses = new List<Course> 
+                { preReqsFor452[0], preReqsFor452[1] }
+            };
+            mockCourses.Add(course);
+
+            return mockCourses;
+        }
+
+
+        /*public List<Course> CreateMockCourses()
         {
             List<Course> mockCourses = new List<Course>();
 
@@ -105,6 +151,6 @@ namespace RecursiveTest
             //main.PreReqCourses.Add(new PreReq { Course = main, PreReqCourse = c450 });
             //main.PreReqCourses.Add(new PreReq { Course = main, PreReqCourse = c353 });
 
-        }
+        }*/
     }
 }
