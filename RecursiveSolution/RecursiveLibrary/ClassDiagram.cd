@@ -67,5 +67,12 @@
       <Property Name="PreReqFor" />
     </ShowAsCollectionAssociation>
   </Class>
+  <Class Name="RecursiveLibrary.TowerOfHanoi">
+    <Position X="1.75" Y="6.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAA=</HashCode>
+      <FileName>TowerOfHanoi.cs</FileName>
+    </TypeIdentifier>
+  </Class>
   <Font Name="Segoe UI" Size="9" />
 </ClassDiagram>
